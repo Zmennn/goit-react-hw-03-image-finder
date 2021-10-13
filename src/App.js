@@ -7,15 +7,20 @@ class App extends Component {
     searchText: "",
   };
 
-  handleInput = (event) => {
-    console.log(event);
-    this.setState({ searchText: event.target.value });
+  handleSubmit = (text) => {
+    this.setState({ searchText: text });
   };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevState.searchText !== this.state.searchText) {
+      console.log(this.state.searchText);
+    }
+  }
 
   render() {
     return (
       <>
-        <SearchBar handleInput={this.handleInput} />
+        <SearchBar handleSubmit={this.handleSubmit} />
       </>
     );
   }
