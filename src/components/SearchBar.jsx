@@ -43,8 +43,7 @@ render(){
             </div>
                 
                 <input
-                autocomplete="off"
-                autofocus    
+                
                 className={style.input}
                 type="text"
                 value={this.state.text}
