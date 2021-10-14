@@ -1,4 +1,4 @@
-import { SearchBar, Button } from "./components/index";
+import { SearchBar, Button, ImageGallery } from "./components/index";
 import "./App.css";
 import { Component } from "react";
 
@@ -11,16 +11,14 @@ class App extends Component {
     this.setState({ searchText: text });
   };
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevState.searchText !== this.state.searchText) {
-      console.log(this.state.searchText);
-    }
-  }
-
   render() {
+    const { handleSubmit, state } = this;
     return (
       <>
-        <SearchBar handleSubmit={this.handleSubmit} />
+        <SearchBar handleSubmit={handleSubmit} />
+
+        <ImageGallery searchRequest={state.searchText} />
+
         <Button />
       </>
     );
@@ -29,4 +27,4 @@ class App extends Component {
 
 export default App;
 
-// , <ImageGallery>, <ImageGalleryItem>, <Loader>, <> и <Modal></Modal>
+//  <ImageGalleryItem>, <Loader>, <> и <Modal></Modal>

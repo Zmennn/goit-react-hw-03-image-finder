@@ -17,33 +17,26 @@ import { BiSearchAlt } from "react-icons/bi";
          })
      }
 
-    
-
-
-render(){
-    return<>
-        <div className={style.searchCont}>
-            <form onSubmit={(event) => {
+     onSubmit=(event) => {
                 event.preventDefault();
                 if (this.state.text.trim() !== "") { 
-                this.props.handleSubmit(this.state.text);
+                this.props.handleSubmit(this.state.text.trim());
                 // После сабмита сделаем текст поискового запроса плейсхолдером, мне кажеться это прикольно,
                 // будет видно что мы искали, и совсем не будет мешать новому поиску)
                 this.setState({ placeholder: this.state.text, text: "" })
                 } else {
                     this.setState({placeholder:"What to search?"})
             }
-            }}>
+            }
+
+
+render(){
+    return<>
+        <div className={style.searchCont}>
+            <form onSubmit={this.onSubmit}>
                 <div className={style.iconCont}
                     
-                    onClick={() => {
-                        if (this.state.text.trim() !== "") {
-                            this.props.handleSubmit(this.state.text);
-                            this.setState({ placeholder: this.state.text, text: "" })
-                        }else {
-                    this.setState({placeholder:"What to search?"})
-            }
-                }}
+                    onClick={this.onSubmit}
                 >
                                    
                     <BiSearchAlt className={style.icon}/>
@@ -68,3 +61,11 @@ export { SearchBar }
 
 
 
+// () => {
+//                         if (this.state.text.trim() !== "") {
+//                             this.props.handleSubmit(this.state.text);
+//                             this.setState({ placeholder: this.state.text, text: "" })
+//                         }else {
+//                     this.setState({placeholder:"What to search?"})
+//             }
+//                 }
