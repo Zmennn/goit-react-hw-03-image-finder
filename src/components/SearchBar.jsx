@@ -1,6 +1,8 @@
 
 import { Component } from "react";
-import style from "./style.module.css"
+import style from "./style.module.css";
+import { BiSearchAlt } from "react-icons/bi";
+
 
  class SearchBar extends Component{
 
@@ -15,18 +17,41 @@ import style from "./style.module.css"
          })
      }
 
+    
+
 
 render(){
     return<>
         <div className={style.searchCont}>
             <form onSubmit={(event) => {
                 event.preventDefault();
+                if (this.state.text.trim() !== "") { 
                 this.props.handleSubmit(this.state.text);
                 // После сабмита сделаем текст поискового запроса плейсхолдером, мне кажеться это прикольно,
-                // будет видно что мы искали, и вообще не будет мешать новому поиску)
-                this.setState({placeholder:this.state.text,text: ""})
+                // будет видно что мы искали, и совсем не будет мешать новому поиску)
+                this.setState({ placeholder: this.state.text, text: "" })
+                } else {
+                    this.setState({placeholder:"What to search?"})
+            }
             }}>
-            <input
+                <div className={style.iconCont}
+                    
+                    onClick={() => {
+                        if (this.state.text.trim() !== "") {
+                            this.props.handleSubmit(this.state.text);
+                            this.setState({ placeholder: this.state.text, text: "" })
+                        }else {
+                    this.setState({placeholder:"What to search?"})
+            }
+                }}
+                >
+                                   
+                    <BiSearchAlt className={style.icon}/>
+            </div>
+                
+                <input
+                autocomplete="off"
+                autofocus    
                 className={style.input}
                 type="text"
                 value={this.state.text}
@@ -43,4 +68,3 @@ export { SearchBar }
 
 
 
-// onChange={ }

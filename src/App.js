@@ -1,4 +1,4 @@
-import { SearchBar } from "./components/index";
+import { SearchBar, Button } from "./components/index";
 import "./App.css";
 import { Component } from "react";
 
@@ -21,6 +21,7 @@ class App extends Component {
     return (
       <>
         <SearchBar handleSubmit={this.handleSubmit} />
+        <Button />
       </>
     );
   }
@@ -28,4 +29,4 @@ class App extends Component {
 
 export default App;
 
-// , <ImageGallery>, <ImageGalleryItem>, <Loader>, <Button> и <Modal></Modal>
+// , <ImageGallery>, <ImageGalleryItem>, <Loader>, <> и <Modal></Modal>
