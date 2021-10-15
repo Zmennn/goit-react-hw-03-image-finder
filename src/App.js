@@ -1,4 +1,4 @@
-import { SearchBar, Button, ImageGallery } from "./components/index";
+import { SearchBar, ImageGallery } from "./components/index";
 import "./App.css";
 import { Component } from "react";
 
@@ -18,8 +18,6 @@ class App extends Component {
         <SearchBar handleSubmit={handleSubmit} />
 
         <ImageGallery searchRequest={state.searchText} />
-
-        <Button />
       </>
     );
   }

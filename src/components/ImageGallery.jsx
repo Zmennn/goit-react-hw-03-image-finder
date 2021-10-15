@@ -1,7 +1,7 @@
 import { Component } from "react";
 import axios from "axios";
-import ImageGalleryItem from "./ImageGalleryItem"
-
+import style from "./style.module.css"
+import{Button,ImageGalleryItem } from "./index"
 
 class ImageGallery extends Component{
 
@@ -29,11 +29,12 @@ class ImageGallery extends Component{
 
     render() {
         return<>
-        <ul className="ImageGallery">
+            <ul className={style.gallery}>
                 <ImageGalleryItem
                 dataArray={this.state.dataArray}
                 />
             </ul>
+            <Button />
             </>
     }
 }

@@ -29,10 +29,11 @@
 .iconCont {
   position: absolute;
   left: 50%;
-  transform: translateX(121px) translateY(4px);
+  transform: translateX(121px) translateY(0px);
   z-index: 10;
-  width: 27px;
-  height: 27px;
+  width: 35px;
+  height: 35px;
+  background-color: rgb(31, 131, 0);
 }
 
 .icon {
@@ -40,4 +41,21 @@
   height: 100%;
   fill: rgb(234, 241, 139);
   cursor: pointer;
+}
+
+.gallery {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+}
+
+.photoCard {
+  align-self: end;
+  border: 1px solid black;
+}
+
+.photoImg {
+  display: block;
+  width: 100%;
+  height: auto;
 }

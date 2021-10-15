@@ -1,11 +1,11 @@
+import style from "./style.module.css"
 
-
-export default function ImageGalleryItem({ dataArray }) {
+export  function ImageGalleryItem({ dataArray }) {
   
  return dataArray.map(el => 
     (       
-    <li key={el.id}  className="ImageGalleryItem">
-      <img src={el.webformatURL} alt="" className="ImageGalleryItem-image" />
+    <li className={style.photoCard} key={el.id}  >
+      <img className={style.photoImg} src={el.webformatURL} alt=""  />
     </li>
   )
   )

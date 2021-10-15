@@ -35,7 +35,7 @@ render(){
         <div className={style.searchCont}>
             <form onSubmit={this.onSubmit}>
                 <div className={style.iconCont}
-                    
+                    // type="button"
                     onClick={this.onSubmit}
                 >
                                    
