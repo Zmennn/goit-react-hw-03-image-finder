@@ -12,6 +12,16 @@ code {
     monospace;
 }
 
-* {
+html {
   box-sizing: border-box;
+}
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
 }

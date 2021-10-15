@@ -60,11 +60,3 @@ export { SearchBar }
 
 
 
-// () => {
-//                         if (this.state.text.trim() !== "") {
-//                             this.props.handleSubmit(this.state.text);
-//                             this.setState({ placeholder: this.state.text, text: "" })
-//                         }else {
-//                     this.setState({placeholder:"What to search?"})
-//             }
-//                 }

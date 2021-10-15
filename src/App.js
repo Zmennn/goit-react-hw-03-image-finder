@@ -25,4 +25,4 @@ class App extends Component {
 
 export default App;
 
-//  <ImageGalleryItem>, <Loader>, <> и <Modal></Modal>
+//   <Loader>, <> и <Modal></Modal>
