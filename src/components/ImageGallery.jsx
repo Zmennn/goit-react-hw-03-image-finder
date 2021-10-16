@@ -1,7 +1,7 @@
 import { Component } from "react";
-import axios from "axios";
+
 import style from "./style.module.css"
-import{Button,ImageGalleryItem, Modal } from "./index"
+import{Button,ImageGalleryItem, Modal, request } from "./index"
 
 class ImageGallery extends Component{
 
@@ -14,16 +14,15 @@ class ImageGallery extends Component{
     }
 
 
-  BASE_URL = "https://pixabay.com/api/"
-  KEY = "23012527-abace86bcdc7661bfd5472938"
+ 
 
    componentDidUpdate(prevProps, prevState) {
-        const { BASE_URL, KEY, props, state } = this;
+        const {props, state } = this;
 
-       if (prevProps.searchRequest !== props.searchRequest) {
-           const url = `${BASE_URL}?key=${KEY}&per_page=12&page=${state.page}&q=${props.searchRequest}`;
+     if (prevProps.searchRequest !== props.searchRequest) {
            this.setState({status:"pending"})
-           axios.get(url)
+           
+             request(state.page,props.searchRequest)
                .then((response) => this.setState({
                    dataArray: response.data.hits,
                    status:"resolved"
@@ -32,9 +31,8 @@ class ImageGallery extends Component{
            
        } else if (prevState.page !== state.page) {
            this.setState({status:"pending"})
-           const url = `${BASE_URL}?key=${KEY}&per_page=12&page=${state.page}&q=${props.searchRequest}`;
-       
-           axios.get(url)
+           
+             request(state.page,props.searchRequest)
                .then((response) =>{ this.setState((prevState) => ({
                    dataArray: [...prevState.dataArray, ...response.data.hits],
                    status:"resolved"
@@ -47,35 +45,52 @@ class ImageGallery extends Component{
                    }              
                }).catch((err) => this.setState({ status: "reject" }))
         }
-    }
-    
-    toggleModal = (modalUrl) => {
-        this.setState((prev) => ({
-            showModal: !prev.showModal,
-            modalUrl: modalUrl,
-            status:!prev.showModal?"idle":"resolved"       
+  }
+  
+
+  toggleModal = () => {
+    this.setState((prev) => ({
+      showModal: !prev.showModal,
+      status:!prev.showModal?"idle":"resolved"
+    }))
+  }
+  
+  
+  toggleModalData = (e) => {    
+    this.setState((prev) => ({
+      showModal: !prev.showModal,
+      modalUrl: this.gettingLink(prev,e),
+      status:!prev.showModal?"idle":"resolved"       
         }))
     }
+  
+  gettingLink(prev,e) {
+    const modalId=e.target.id;
+    const obj = prev.dataArray.find((el) => el.id.toString() === modalId)
+    if(obj){return obj.largeImageURL}
     
+  };
+
   handleLoadMore = () => this.setState((prevState) => ({
         page: prevState.page + 1
     }));
 
 
   render() {
-        const{state,handleLoadMore,toggleModal}=this
+        const{state,handleLoadMore,toggleModal,toggleModalData}=this
       return <>
           
-          {state.showModal && <Modal>  
-              <img src={state.modalUrl} alt="" />
-              <button type="button" onClick={toggleModal} className={style.closeButton}>Close</button>
+        {state.showModal && <Modal
+            toggleModal={toggleModal}>
+              <img src={state.modalUrl} className={style.modalImg} alt="" />
+              
           </Modal>}
           
           {!state.showModal &&
             <ul className={style.gallery}>
                 <ImageGalleryItem
                   dataArray={state.dataArray}
-                  toggleModal={toggleModal}
+                  toggleModalData={toggleModalData}
                 />
             </ul>}
           

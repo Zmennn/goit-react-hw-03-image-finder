@@ -4,16 +4,37 @@ import style from "./style.module.css"
 
 
 const modalRoot = document.querySelector("#modal-root");
-console.log(modalRoot);
 export class Modal extends Component {
 
+    handleKeyDown=(e) => {
+        if (e.code === "Escape") { this.props.toggleModal() }
+        
+        }
 
+    componentDidMount() {
+        window.addEventListener('keydown',this.handleKeyDown )
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown',this.handleKeyDown )
+    }
+
+
+    handleBackdropClick = (ev) => {
+        if (ev.target === ev.currentTarget) {
+        this.props.toggleModal()
+    } }
+    
     render(){
         return createPortal(
-        <div className={style.overlay}>
-            <div className={style.modal}>
+            <div
+                className={style.overlay}
+                onClick={this.handleBackdropClick}
+            >
+            <div className={style.modalContainer}>
             {this.props.children}
-            </div>
+                </div>
+                <button type="button" onClick={this.props.toggleModal} className={style.closeButton}>Close</button>
         </div>,modalRoot     
     )  }
 }

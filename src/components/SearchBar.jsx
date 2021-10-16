@@ -34,13 +34,7 @@ render(){
     return<>
         <div className={style.searchCont}>
             <form onSubmit={this.onSubmit}>
-                <div className={style.iconCont}
-                    // type="button"
-                    onClick={this.onSubmit}
-                >
-                                   
-                    <BiSearchAlt className={style.icon}/>
-            </div>
+                
                 
                 <input
                 
@@ -49,7 +43,14 @@ render(){
                 value={this.state.text}
                 placeholder={this.state.placeholder}
                 onChange={this.handleInput }
-            />
+                />
+                <div className={style.iconCont}
+                    // type="button"
+                    onClick={this.onSubmit}
+                >
+                                   
+                    <BiSearchAlt className={style.icon}/>
+                </div>
             </form>
         </div>
     </>
