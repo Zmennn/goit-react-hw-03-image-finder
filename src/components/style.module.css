@@ -87,7 +87,7 @@
 
 .closeButton {
   font-size: 13px;
-  background-color: tomato;
+  background-color: rgb(44, 44, 44);
   color: aliceblue;
   position: absolute;
   right: 40px;

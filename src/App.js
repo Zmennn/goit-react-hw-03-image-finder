@@ -1,6 +1,7 @@
 import { SearchBar, ImageGallery } from "./components/index";
 import "./App.css";
 import { Component } from "react";
+import { ToastContainer } from "react-toastify";
 
 class App extends Component {
   state = {
@@ -18,11 +19,11 @@ class App extends Component {
         <SearchBar handleSubmit={handleSubmit} />
 
         <ImageGallery searchRequest={state.searchText} />
+
+        <ToastContainer />
       </>
     );
   }
 }
 
 export default App;
-
-//   <Loader>, <> и <Modal></Modal>
