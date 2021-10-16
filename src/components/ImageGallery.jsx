@@ -1,14 +1,16 @@
 import { Component } from "react";
 import axios from "axios";
 import style from "./style.module.css"
-import{Button,ImageGalleryItem } from "./index"
+import{Button,ImageGalleryItem, Modal } from "./index"
 
 class ImageGallery extends Component{
 
   state = {
         dataArray: [],
         page: 1,
-        status:"idle"
+        status: "idle",
+      showModal: false,
+        modalUrl:""
     }
 
 
@@ -47,7 +49,13 @@ class ImageGallery extends Component{
         }
     }
     
-
+    toggleModal = (modalUrl) => {
+        this.setState((prev) => ({
+            showModal: !prev.showModal,
+            modalUrl: modalUrl,
+            status:!prev.showModal?"idle":"resolved"       
+        }))
+    }
     
   handleLoadMore = () => this.setState((prevState) => ({
         page: prevState.page + 1
@@ -55,13 +63,22 @@ class ImageGallery extends Component{
 
 
   render() {
-        const{state,handleLoadMore}=this
-        return<>
+        const{state,handleLoadMore,toggleModal}=this
+      return <>
+          
+          {state.showModal && <Modal>  
+              <img src={state.modalUrl} alt="" />
+              <button type="button" onClick={toggleModal} className={style.closeButton}>Close</button>
+          </Modal>}
+          
+          {!state.showModal &&
             <ul className={style.gallery}>
                 <ImageGalleryItem
-                dataArray={state.dataArray}
+                  dataArray={state.dataArray}
+                  toggleModal={toggleModal}
                 />
-            </ul>
+            </ul>}
+          
             {state.status==="resolved" && (<Button
             handleLoadMore={handleLoadMore}
             />)}

@@ -60,18 +60,36 @@
 .gallery {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  margin-left: 20px;
-  margin-right: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .photoCard {
-  align-self: end;
   border: 1px solid black;
+  height: 300px;
 }
 
 .photoImg {
   display: block;
+  height: 100%;
   width: 100%;
-  height: auto;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(49, 49, 49, 0.781);
+  top: 0;
+}
+
+.closeButton {
+  font-size: 13px;
+  background-color: tomato;
+  color: aliceblue;
+  position: absolute;
+  right: 40px;
+  top: 20px;
 }

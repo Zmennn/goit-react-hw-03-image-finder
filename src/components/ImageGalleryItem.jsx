@@ -1,11 +1,11 @@
 import style from "./style.module.css"
 
-export  function ImageGalleryItem({ dataArray }) {
+export  function ImageGalleryItem({ dataArray, toggleModal }) {
   
  return dataArray.map(el => 
     (       
     <li className={style.photoCard} key={el.id} id={el.id}  >
-      <img className={style.photoImg} src={el.webformatURL} alt=""  />
+      <img onClick={toggleModal} className={style.photoImg} src={el.webformatURL} alt=""  />
     </li>
   )
   )
