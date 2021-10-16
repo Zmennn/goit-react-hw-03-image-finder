@@ -1,8 +1,10 @@
 import { Component } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import style from "./style.module.css"
-import{Button,ImageGalleryItem, Modal, request } from "./index"
+import style from "./style.module.css";
+import { Button, ImageGalleryItem, Modal, request } from "./index";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 class ImageGallery extends Component{
 
@@ -38,10 +40,11 @@ class ImageGallery extends Component{
        } else if (prevState.page !== state.page) {
            this.setState({status:"pending"})
            
-       request(state.page, props.searchRequest)
-         .then((res) => {
+           request(state.page, props.searchRequest)
+          .then((res) => {
            if (res.data.hits.length < 1) {
-           toast.warn("These are all pictures for this request");
+             toast.warn("These are all pictures for this request");
+             this.setState({status:"idle"})
            } else {
              this.setState((prevState) => ({
                    dataArray: [...prevState.dataArray, ...res.data.hits],
@@ -90,10 +93,16 @@ class ImageGallery extends Component{
 
 
   render() {
-        const{state,handleLoadMore,toggleModal,toggleModalData}=this
-      return <>
-        {state.status === "reject" &&toast.error("unknown error, check connection")}
-        
+    const { state, handleLoadMore, toggleModal, toggleModalData } = this
+    return <>
+      {state.status === "reject" && toast.error("unknown error, check connection")}
+
+      {state.status === "pending" && (
+        <div  className={style.spinContainer}>
+            <Loader type="Circles" color="#00BFFF" height={120} width={120} />
+        </div>)
+  }
+
         {state.showModal && <Modal
             toggleModal={toggleModal}>
               <img src={state.modalUrl} className={style.modalImg} alt="" />
@@ -117,3 +126,4 @@ class ImageGallery extends Component{
 
 
 export { ImageGallery }
+

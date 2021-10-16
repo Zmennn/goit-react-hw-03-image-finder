@@ -1,5 +1,5 @@
 .searchCont {
-  height: 35px;
+  height: 50px;
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
@@ -10,7 +10,7 @@
 }
 
 .buttonCont {
-  height: 35px;
+  height: 50px;
   margin-bottom: 20px;
   margin-left: 20px;
   margin-right: 20px;
@@ -25,7 +25,7 @@
   font-size: 25px;
   background-color: blue;
   color: aqua;
-  height: 35px;
+  height: 50px;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -41,10 +41,9 @@
 .iconCont {
   position: absolute;
   left: 50%;
-  transform: translateX(121px) translateY(0px);
-  /* z-index: 10; */
-  width: 35px;
-  height: 35px;
+  transform: translateX(100px) translateY(0px);
+  width: 50px;
+  height: 50px;
   background-color: rgb(31, 131, 0);
   border-radius: 0 5px 5px 0;
   border: black 1px solid;
@@ -107,4 +106,13 @@
   object-fit: cover;
   max-width: 85vw;
   max-height: 90vh;
+}
+
+.spinContainer {
+  width: 120px;
+  height: 120px;
+  position: fixed;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
 }
