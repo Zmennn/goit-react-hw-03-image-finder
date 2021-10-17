@@ -1,4 +1,5 @@
-import style from "./style.module.css"
+import style from "./style.module.css";
+import PropTypes from "prop-types";
 
 export function Button({handleLoadMore}) {
     return<>
@@ -10,4 +11,8 @@ export function Button({handleLoadMore}) {
                 >Load more</button>
         </div>
         </>
+}
+
+Button.propTypes = {
+    searchRequest:PropTypes.func
 }

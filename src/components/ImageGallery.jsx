@@ -5,6 +5,7 @@ import style from "./style.module.css";
 import { Button, ImageGalleryItem, Modal, request } from "./index";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
+import PropTypes from "prop-types";
 
 class ImageGallery extends Component{
 
@@ -126,4 +127,8 @@ class ImageGallery extends Component{
 
 
 export { ImageGallery }
+
+ImageGallery.propTypes = {
+    searchRequest:PropTypes.string.isRequired
+}
 

@@ -1,4 +1,5 @@
-import style from "./style.module.css"
+import style from "./style.module.css";
+import PropTypes from "prop-types";
 
 export  function ImageGalleryItem({ dataArray, toggleModalData }) {
   
@@ -14,7 +15,10 @@ export  function ImageGalleryItem({ dataArray, toggleModalData }) {
     </li>
   )
   )
+}
   
-  
+ImageGalleryItem.propTypes = {
+  dataArray: PropTypes.array.isRequired,
+  toggleModalData:PropTypes.func.isRequired
 }
 

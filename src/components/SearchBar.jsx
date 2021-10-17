@@ -2,6 +2,7 @@
 import { Component } from "react";
 import style from "./style.module.css";
 import { BiSearchAlt } from "react-icons/bi";
+import PropTypes from "prop-types";
 
 
  class SearchBar extends Component{
@@ -58,6 +59,10 @@ render(){
 }
 
 export { SearchBar }
+
+SearchBar.propTypes = {
+    searchRequest:PropTypes.func
+}
 
 
 
